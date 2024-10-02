@@ -1,30 +1,24 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-//import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
 import 'package:reporteencubiertonom035/data/api/api_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginForm extends StatefulWidget {
   final Function(String value) onValidData;
-  // final Function(String) idEmpresa;
   final GlobalKey<FormState> formKey;
-
   const LoginForm({
     super.key,
     required this.onValidData,
     required this.formKey,
   });
-
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController _password = TextEditingController();
-
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   bool isScanning = false;
   final _qrBarCodeScannerDialogPlugin = QrBarCodeScannerDialog();
@@ -125,51 +119,15 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   _launchURL() async {
-    if (Platform.isIOS) {
-      // ignore: deprecated_member_use
-      if (await canLaunch('youtube://www.youtube.com/@BonyPetsTeam')) {
-        // ignore: deprecated_member_use
-        await launch('youtube://www.youtube.com/@BonyPetsTeam',
-            forceSafariVC: false);
-      } else {
-        // ignore: deprecated_member_use
-        if (await canLaunch(
-            'https://nom035.administrabajo.com/avisoprivacidad.html')) {
-          // ignore: deprecated_member_use
-          await launch(
-              'https://nom035.administrabajo.com/avisoprivacidad.html');
-        } else {
-          throw 'Could not launch https://www.youtube.com/@BonyPetsTeam';
-        }
-      }
+    if (await canLaunchUrl(
+        Uri.parse('https://nom035.administrabajo.com/avisoprivacidad.html'))) {
+      await launchUrl(
+          Uri.parse('https://nom035.administrabajo.com/avisoprivacidad.html'));
     } else {
-      const url = 'https://nom035.administrabajo.com/avisoprivacidad.html';
-      // ignore: deprecated_member_use
-      if (await canLaunch(url)) {
-        // ignore: deprecated_member_use
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
+      await launchUrl(
+          Uri.parse('https://nom035.administrabajo.com/avisoprivacidad.html'));
     }
   }
-  // Future _scanQR() async {
-  // await showDialog(
-  /// context: context,
-  // builder: (BuildContext context) {
-  // return QRView(
-  // key: qrKey,
-  // onQRViewCreated: (QRViewController controller) {
-  // controller.scannedDataStream.listen((scanData) {
-  // controller.dispose();
-  // Navigator.pop(context);
-  ///      _password.text = scanData.code ?? "";
-  // });
-  //      },
-  //  );
-  //    },
-//    );
-  // }
 
   Future _login(String password) async {
     try {

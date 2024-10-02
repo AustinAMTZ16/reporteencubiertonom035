@@ -53,8 +53,8 @@ android {
         applicationId = "com.admintrabajo.reporteencubiertonom035"
         minSdk = 24//flutter.minSdkVersion
         targetSdk = 34//flutter.targetSdkVersion
-        versionCode = 7//flutter.versionCode
-        versionName = "6.2"//flutter.versionNsame
+        versionCode = 10//flutter.versionCode
+        versionName = "10.0"//flutter.versionNsame
         multiDexEnabled true
     }
     signingConfigs {

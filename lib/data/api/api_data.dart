@@ -13,14 +13,18 @@ class ApiData {
 
 /*Login */
   Future<String> login(String password) async {
-    final passwordParam = password.contains('"')
-        ? Uri.encodeQueryComponent(password)
-        : Uri.encodeQueryComponent('"$password"');
+    // final passwordParam = password.contains('"')
+    //     ? Uri.encodeQueryComponent(password)
+    //     : Uri.encodeQueryComponent('"$password"');
+
+    final passwordParam = Uri.encodeQueryComponent('"$password"');
 
     final url = Uri.parse(
         '$baseUrl/ReporteEncubierto/accesoReporteEncubierto.php?contrasena_reporte_ecubierto=$passwordParam');
 
-    final response = await http.post(url);
+    final response = await http.get(url);
+
+    print('Generated URL: $url');
 
     if (response.statusCode == 200) {
       final usuarios = usuarioFromJson(response.body.toString());

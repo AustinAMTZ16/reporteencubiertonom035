@@ -1,16 +1,5 @@
-# reporteencubiertonom035
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Update 020924:Version 7 (7.0)
+## Idioma predeterminado:
+- 1. Se agrega un enlace a las políticas de privacidad.
+- 2. Se actualiza la funcionalidad del escáner QR.
+- 3. Se actualiza la versión del SDK de Android.
